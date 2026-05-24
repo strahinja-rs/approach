@@ -13,7 +13,7 @@ Agent-execution shape framers for Claude Code. Each skill takes a task and produ
 | Contract | `task-to-verifiable-loop` (external) | ✓ live |
 | Loop | `/loop` (external) | ✓ live |
 | One-shot | `shape:one-shot` | planned |
-| Event | `shape:event` | planned |
+| Event | `shape:event` | ✓ live |
 | Dialogue | `shape:dialogue` | planned |
 | Search | `shape:search` | planned (overlaps `/eval`) |
 | Blackboard | `shape:blackboard` | planned |
