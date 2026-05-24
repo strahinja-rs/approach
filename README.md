@@ -12,11 +12,11 @@ Agent-execution shape framers for Claude Code. Each skill takes a task and produ
 | Gated | `shape:gated` | ✓ live |
 | Contract | `task-to-verifiable-loop` (external) | ✓ live |
 | Loop | `/loop` (external) | ✓ live |
-| One-shot | `shape:one-shot` | planned |
+| One-shot | `shape:one-shot` | ✓ live |
 | Event | `shape:event` | ✓ live |
-| Dialogue | `shape:dialogue` | planned |
-| Search | `shape:search` | planned (overlaps `/eval`) |
-| Blackboard | `shape:blackboard` | planned |
+| Dialogue | `shape:dialogue` | ✓ live (routes Socratic teaching to `/teach-me`) |
+| Search | `shape:search` | ✓ live (recommends `/eval` for eval-harness fit) |
+| Blackboard | `shape:blackboard` | ✓ live |
 
 ## Design
 
