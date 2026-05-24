@@ -18,7 +18,17 @@ Agent-execution shape framers for Claude Code. Each skill takes a task and produ
 | Search | `shape:search` | ✓ live (recommends `/eval` for eval-harness fit) |
 | Blackboard | `shape:blackboard` | ✓ live |
 
-**All 11 shapes are first-class plugin skills.** Shapes work for both coding (refactor, build, deploy, test) and knowledge work (research, synthesis, writing, document analysis, multi-source claim verification). The composer will treat the family as a unified set when planning compositions.
+**All 11 shapes are first-class plugin skills.** Shapes work for both coding (refactor, build, deploy, test) and knowledge work (research, synthesis, writing, document analysis, multi-source claim verification).
+
+## The composer
+
+| Skill | Role |
+|---|---|
+| `shape:composer` | ✓ live — composition planner for the shape family |
+
+The composer is the entry point. It takes any task, extracts a precise Problem Statement (Phase 1, structured intake via `shape:dialogue` internally), maps to candidate shapes, composes a nested tree, sanity-checks cost vs value, writes the composition root + child contracts. Frame-only — it produces documents, never executes. Adaptive recomposition (Phase 7) re-plans when stage results diverge from expectation.
+
+**The single most important phase is Phase 1.** Composition correctness is bounded by problem-statement precision. The composer treats imprecise problems as the failure mode they are — surfaces unknowns as `Assumptions:` rather than guessing.
 
 ## Design
 
