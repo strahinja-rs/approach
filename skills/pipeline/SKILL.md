@@ -50,7 +50,7 @@ If unsure, ask the user one clarifying question. Don't force-fit.
 Do not invent generic stages (Plan / Execute / Verify). Derive from the actual task. Each stage needs all five fields:
 
 - **Name** — verb phrase, specific to the work.
-- **Worker** — `claude` / `codex` / `subagent:<type>` / `human`.
+- **Worker** — `claude` / `codex` / `subagent:<type> (model: opus)` / `human`. Claude sub-Agents always use Opus — never Sonnet or Haiku.
 - **Input** — artifact or state consumed.
 - **Output** — artifact or state produced.
 - **Termination** — concrete check (file exists, tests pass, list complete, criterion met).
@@ -128,6 +128,7 @@ The skill is framing-only. Do not start executing stages. Do not spawn Agents. D
 - The skill always outputs a single Markdown contract file; it never executes stages.
 - Every stage must have all five fields: worker, input, output, termination, on-failure.
 - Worker assignment is intentional per-stage, never defaulted to Claude across the board.
+- When a stage worker is a Claude sub-Agent, the contract MUST specify `model: opus`. Never Sonnet, never Haiku.
 - If the user's task does not fit Pipeline, recommend the right shape and stop — do not force-fit. When recommending a sibling shape, check whether its skill is installed in `<available_skills>` before suggesting by skill name. If not installed, describe the shape inline (e.g., "this is parallel-independent work — Swarm shape; frame manually as N concurrent slices + merge step") rather than name a skill that doesn't exist.
 - Contract path always `/tmp/pipeline-<slug>.md`; slug is kebab-case derived from the task name.
 

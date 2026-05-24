@@ -59,11 +59,11 @@ Default by slice characteristic:
 | Slice shape | Worker |
 |---|---|
 | Long single-task, deterministic (e.g., refactor one file, analyze one log) | Codex (`codex exec`) |
-| Multi-tool exploration of one input (e.g., review one PR with multiple lookups) | sub-Agent |
-| Pure read + simple transform (e.g., fetch and parse one URL) | Claude inline or sub-Agent |
+| Multi-tool exploration of one input (e.g., review one PR with multiple lookups) | sub-Agent (model: opus) |
+| Pure read + simple transform (e.g., fetch and parse one URL) | Claude inline or sub-Agent (model: opus) |
 | Heterogeneous slices (different per slice) | mix workers per slice; declare each |
 
-Uniform worker across all slices is the common case. Mixed assignment is valid but must be declared per-slice.
+Uniform worker across all slices is the common case. Mixed assignment is valid but must be declared per-slice. **Claude sub-Agents always use Opus — never Sonnet or Haiku.**
 
 ### 4. Define the reducer
 
@@ -143,6 +143,7 @@ The skill is framing-only. Do not start spawning Agents. Do not call `codex exec
 - The skill always outputs a single Markdown contract file; it never executes the swarm.
 - Every Swarm contract must declare: N, per-slice worker(s), reducer, failure mode, parallelism cap.
 - The reducer is non-optional. A Swarm without a reducer is rejected.
+- When a slice worker is a Claude sub-Agent, the contract MUST specify `model: opus`. Never Sonnet, never Haiku.
 - Parallelism cap defaults to ≤8 (per anti-pattern #19); larger N batches.
 - If the task doesn't fit Swarm, recommend the right shape and stop — don't force-fit. When recommending a sibling shape, check `<available_skills>` for the sibling skill before suggesting by skill name; if not installed, describe the shape inline.
 - Contract path always `/tmp/swarm-<slug>.md`; slug is kebab-case derived from the task name.
