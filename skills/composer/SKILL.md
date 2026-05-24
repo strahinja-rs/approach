@@ -123,6 +123,7 @@ Worker default lean: **Claude for direction, Codex for execution.** This is a pe
 - **Critic earns Critic when the output is judgment-bound + quality matters + producer is over-confident-prone.** Otherwise let the stage be plain.
 - **Gate at the smallest dangerous step.** Don't gate everything; gate the actually-irreversible step.
 - **Contract wraps the whole tree when fake-progress risk is high.** It's the verification spine. Use sparingly.
+- **Adversarial review at completion for long-running work.** Compositions spanning multiple stages, hours of work, or high-stakes output should include a final `shape:critic` pass (preferably with Codex `/adversarial-review` as the critic worker). Quality compounds with time invested; the critic catches what the producer missed and prevents fake-progress shipping. Default-on for long-running compositions; skip only when work is genuinely short and low-stakes.
 
 **/research as callable:** invoke `/research` from inside a Pipeline gather stage when sources need to be collected, or as a Phase 1 sub-step when problem extraction needs external context. Never auto-invoke without explicit need.
 
@@ -232,6 +233,7 @@ Adaptive recomposition is opt-in — only invoked when stage results suggest the
 - When a worker is a Claude sub-Agent, the contract MUST specify `model: opus`. Never Sonnet, never Haiku.
 - `/research` is callable only when Phase 1 or Phase 2 surfaces a specific blocking unknown; never auto-invoke.
 - Adaptive recomposition is opt-in: invoked only when stage results diverge from expectation. Default to original plan if results match.
+- Long-running compositions (multiple stages, hours of work, or high-stakes output) MUST include an adversarial review pass at completion — typically a final `shape:critic` stage with Codex `/adversarial-review` as the critic worker. Default-on for long-running work; explicit opt-out required for short low-stakes compositions.
 - Contract paths: `<contracts-root>/composition-<slug>.md` (root), `<contracts-root>/composition-<slug>-problem.md` (problem statement), `<contracts-root>/<shape>-<slug>-<subname>.md` (children). `<contracts-root>` resolution (in order): user-specified path > task-implied project folder > cwd if it is a project (has `.git/` or `CLAUDE.md`) → `<project>/.claude/contracts/` > fallback `/tmp/shape-contracts/`.
 - If the task doesn't warrant composition (one shape suffices, or work is trivial), say so and recommend the single shape — don't force-compose. The Problem Statement file is still written when Phase 1 ran a real dialogue (the extraction has value beyond composition); it is not written when the quick-extract path was used and the conclusion is "no composition needed."
 
