@@ -75,9 +75,11 @@ If specialists could just work independently with no read-from-shared-state, it'
 
 ### 3. Define specialists
 
+Specialists are **persona-shaped roles** — each named role is a perspective with a specific capability and a specific lens on the workspace. The fact that each specialist sees the situation differently is the whole point; identical specialists are Swarm, not Blackboard.
+
 For each specialist:
 
-- **Name** — what role it plays (security-reviewer, perf-optimizer, accessibility-auditor, margin-analyst, knowledge-mapper, …).
+- **Name** — what role it plays (security-reviewer, perf-optimizer, accessibility-auditor, margin-analyst, knowledge-mapper, regulator-eyes, frustrated-user-eyes, competitor-eyes, …). Named roles can be technical specialties (security, perf) or persona-positioned lenses (regulator, frustrated user, competitor); both work.
 - **Worker** — Claude sub-Agent **(model: opus per [PRINCIPLES.md §2](../../PRINCIPLES.md#2-sub-agent-workers-always-use-opus))** with role-specific prompt, or Codex with role framing, or a specific subagent_type if one matches.
 - **Capability** — what it can contribute (what kinds of changes it can write to the blackboard).
 - **Trigger** — when does it pick up work? On blackboard change? Periodically? On a specific signal?

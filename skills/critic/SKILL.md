@@ -157,8 +157,21 @@ symmetric (peers + judge)
 - N: <usually 2-3>
 - Worker: subagent:<peer-type> (model: opus)
 - Per-peer framing:
-  - Peer 1: <stance / angle>
-  - Peer 2: <stance / angle>
+  - Peer 1: <stance / angle / persona — see "Peer positioning" below>
+  - Peer 2: <stance / angle / persona>
+
+## Peer positioning (load-bearing — peers must differ substantively)
+
+Common ways to position peers so the debate produces real signal rather than echo:
+
+- **Red-team vs blue-team**: one attacks, one defends. Best for security, risk, contract review.
+- **Advocate vs skeptic**: one argues for the proposal, one argues against. Best for strategic decisions.
+- **Optimist vs pessimist**: one frames best-case execution, one frames failure modes. Best for plan review.
+- **Persona-positioned**: peers take *named archetype roles* — "think like a regulator," "think like a frustrated user," "think like a competitor," "think like a board member," "think like a 90-days-in employee." Each persona surfaces what its eyes naturally foreground vs miss. Powerful for strategic / design / positioning work where multiple stakeholder lenses matter.
+- **Expertise pivot**: peers come from different disciplinary lenses — designer vs engineer vs marketer vs operator. Best for cross-functional decisions.
+- **Time-horizon pivot**: short-term-pragmatist vs long-term-strategist. Best for trade-off decisions.
+
+Whatever positioning you pick, the discipline is *substantive differentiation* — peers with identical prompts produce N copies of the same output and the judge picks at random. The per-peer framing field is where the positioning lives.
 
 ## Judge
 - Worker: <subagent:<judge-type> (model: opus) | human>
